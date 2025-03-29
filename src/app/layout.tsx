@@ -13,7 +13,6 @@ const lexendFont = Lexend({
   subsets: ["latin"],
 });
 
-// Create a cursor context
 type CursorContextType = {
   api: SpringRef;
 };
@@ -41,7 +40,6 @@ export default function RootLayout({
     config: { mass: 1, tension: 300, friction: 20 },
   }));
 
-  // Track mouse movement
   useEffect(() => {
     const mouseMove = (e: MouseEvent) => {
       api.start({ x: e.clientX - 20, y: e.clientY - 20 });
@@ -69,9 +67,8 @@ export default function RootLayout({
           />
         </head>
         <body className="antialiased overflow-x-hidden">
-          {/* Cursor */}
           <animated.div
-            className="w-6 h-6 md:w-8 md:h-8 bg-yellow-300 mix-blend-difference opacity-90 fixed z-[99999] pointer-events-none"
+            className={`h-6 md:h-8 w-6 md:w-8 bg-yellow-300 mix-blend-difference opacity-90 fixed z-[99999] pointer-events-none`}
             style={{ 
               x: springProps.x, 
               y: springProps.y, 
@@ -109,7 +106,7 @@ export default function RootLayout({
             initial={{ y: 600, filter: "blur(10px)", opacity: 0 }} 
             animate={{ y: 0, filter: "blur(0px)", opacity: 1}} 
             transition={{ duration: 1, delay: 1 }} 
-            className="w-full scale-75 md:scale-100 h-16 bottom-16 p-5 rounded-2xl fixed gap-4 bg-yellow-300 flex items-center justify-between z-50 cursor-none"
+            className="w-full h-16 bottom-0 p-5 rounded-t-2xl fixed gap-4 bg-zinc-900 flex items-center justify-between z-50 cursor-none"
           >
             <NavItem delay={2} icon="fa-solid fa-home" link="/" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
             <NavItem delay={2.6} icon="fa-solid fa-code" link="/tech" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>

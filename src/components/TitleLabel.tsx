@@ -24,7 +24,7 @@ const TitleLabel: React.FC<TitleProps> = ({ children }) => {
         type: "spring",
         stiffness: 120,
         damping: 12,
-        delay: 2.5
+        delay: 1
       }}
       className='w-fit bg-gradient-to-r from-yellow-300 to-yellow-400 
                  fixed top-5 left-0 
@@ -32,10 +32,10 @@ const TitleLabel: React.FC<TitleProps> = ({ children }) => {
                  text-gray-800 
                  font-semibold text-2xl 
                  flex items-center justify-center 
-                 shadow-lg 
+                 shadow-lg
                  hover:shadow-xl 
                  transition-all duration-300
-                 origin-left'
+                 origin-left scale-75 md:scale-100 z-[999]'
     >
       <Div
         whileTap={{ scale: 0.95 }}

@@ -1,10 +1,10 @@
 "use client";
 
 import React, { createContext, useContext, useState } from 'react';
-import { SpringValue, useSpring } from '@react-spring/web';
+import { SpringRef, SpringValue, useSpring } from '@react-spring/web';
 
 type CursorContextType = {
-  api: any;
+  api: SpringRef;
 };
 
 const CursorContext = createContext<CursorContextType | undefined>(undefined);

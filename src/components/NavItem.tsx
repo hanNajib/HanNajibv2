@@ -24,7 +24,7 @@ const NavItem = ({ icon, link, delay, onMouseEnter, onMouseLeave }: Props) => {
         onMouseLeave={onMouseLeave}
       >
         <motion.div
-          className="cursor-none z-50 w-10 h-10 flex items-center justify-center rounded-md bg-gray-800 text-white shadow-lg"
+          className="cursor-none z-50 w-10 h-10 flex items-center justify-center rounded-md bg-yellow-300 text-gray-800 md:bg-gray-800 md:text-white  shadow-lg"
           whileHover={{
             scale: 1.2,
             rotate: 10,
