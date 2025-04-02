@@ -1,16 +1,21 @@
 "use client";
 
-import React, { createContext, useContext, useState } from 'react';
-import { SpringRef, SpringValue, useSpring } from '@react-spring/web';
+import React, { createContext, useContext } from 'react';
+import { useSpring, SpringValue } from '@react-spring/web';
 
 type CursorContextType = {
-  api: SpringRef;
+  api: {
+    x: SpringValue<number>;
+    y: SpringValue<number>;
+    scale: SpringValue<number>;
+    rounded: SpringValue<number>;
+  };
 };
 
-const CursorContext = createContext<CursorContextType | undefined>(undefined);
+const CursorContext = createContext<CursorContextType | undefined>(undefined);  
 
 export function CursorProvider({ children }: { children: React.ReactNode }) {
-  const [springProps, api] = useSpring(() => ({
+  const [api] = useSpring(() => ({
     x: -50,
     y: -50,
     scale: 1,

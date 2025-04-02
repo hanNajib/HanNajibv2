@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import ProjectCard, { Project } from "@/components/ProjectCard";
 import TitleLabel from "@/components/TitleLabel";
 
@@ -43,89 +43,81 @@ const projectsData: Project[] = [
     imageUrl: "/flipiwak.png", 
     liveLink: "http://flip-iwak.vercel.app/" 
   },
-  // Add more unique projects here
 ];
 
 const ProjectsPage = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [totalWidth, setTotalWidth] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
-
+  const [scrollX, setScrollX] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Calculate dimensions and set up scroll listener
   useEffect(() => {
-    const calculateWidth = () => {
-      if (containerRef.current) {
-        const cardWidth = 400; // Fixed card width
-        const gap = 32; // Space between cards
-        const totalCards = projectsData.length;
-        const viewportWidth = window.innerWidth;
-        
-        // Adjust card width for smaller screens
-        const responsiveCardWidth = viewportWidth < 768 
-          ? viewportWidth * 0.8 
-          : cardWidth;
-
-        // Calculate total scroll width
-        const calculatedWidth = (responsiveCardWidth + gap) * totalCards - viewportWidth + 100; // Use px for precise calculation
-        setTotalWidth(calculatedWidth); // Store total scrollable width in px
-        setWindowWidth(viewportWidth);
-      }
+    const updateWidth = () => {
+      setWindowWidth(window.innerWidth);
     };
-
-    // Initial calculation
-    calculateWidth();
-
-    // Recalculate on resize
-    window.addEventListener('resize', calculateWidth);
-    return () => window.removeEventListener('resize', calculateWidth);
-  }, []);
-
-  const { scrollYProgress } = useScroll();
-  
-  const smoothProgress = useSpring(scrollYProgress, {
-    damping: 40,
-    stiffness: 300,
-    mass: 0.8
-  });
-  
-  const x = useTransform(
-    smoothProgress,
-    [0, 1],
-    [0, -totalWidth] // Use px directly for transform
-  );
-
-  return (
-    <div className="relative w-full min-h-[95vh] py-16">
-      <TitleLabel>Projects</TitleLabel>
-
-
-      <div 
-        className="w-full" 
-        style={{ 
-          height: `${totalWidth + windowWidth}px` // Adjust height using px
-        }}
-        aria-hidden="true"
-      />
+    
+    // Update width initially and on resize
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    
+    // Custom scroll handler
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const documentHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollProgress = scrollY / documentHeight;
       
+      // Calculate total scroll width
+      const cardWidth = windowWidth < 768 ? windowWidth * 0.8 : 400;
+      const gap = 32;
+      const totalWidth = projectsData.length * (cardWidth + gap);
+      const maxScrollX = totalWidth - windowWidth + 100;
+      
+      // Set horizontal scroll position based on vertical scroll
+      setScrollX(scrollProgress * maxScrollX);
+    };
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Force initial scroll position to top
+    window.scrollTo(0, 0);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [windowWidth]);
+  
+  return (
+    <div className="relative w-full min-h-screen">
+      <TitleLabel>Projects</TitleLabel>
+      
+      {/* Spacer for vertical scrolling */}
+      <div style={{ height: "300vh" }} />
+      
+      {/* Fixed container for horizontal cards */}
       <div className="fixed top-0 left-0 w-full h-screen flex items-center overflow-hidden">
-        <motion.div 
+        <div 
           ref={containerRef}
-          style={{ x }} 
-          className="flex gap-8 px-0 md:px-10 -translate-x-2 md:-translate-x-0"
+          className="flex gap-8 px-4 md:px-10 ml-4 md:ml-8"
+          style={{ 
+            transform: `translateX(-${scrollX}px)`,
+            transition: 'transform 0.1s ease-out'
+          }}
         >
           {projectsData.map((project, index) => (
             <motion.div 
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ 
+              animate={{ 
                 opacity: 1, 
                 y: 0,
                 transition: {
                   duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1],
                   delay: index * 0.1
                 }
               }}
-              viewport={{ once: true }}
               className={`flex-shrink-0 ${
                 windowWidth < 768 ? "w-[80vw] h-[60vh]" : "w-[400px] h-[500px]"
               }`} 
@@ -133,7 +125,7 @@ const ProjectsPage = () => {
               <ProjectCard {...project} />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

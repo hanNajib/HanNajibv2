@@ -14,7 +14,7 @@ const lexendFont = Lexend({
 });
 
 type CursorContextType = {
-  api: SpringRef;
+  api: SpringRef<{ x: number; y: number; scale: number; rounded: number }>;
 };
 
 const CursorContext = createContext<CursorContextType | null>(null);
@@ -32,7 +32,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [springProps, api] = useSpring(() => ({
+  const [springProps, api] = useSpring<{ x: number; y: number; scale: number; rounded: number }>(() => ({
     x: -50,
     y: -50,
     scale: 1,
@@ -51,6 +51,8 @@ export default function RootLayout({
     };
   }, [api]);
 
+  const AnimatedDiv = animated('div')
+
   return (
     <CursorContext.Provider value={{ api }}>
       <html lang="en" className={`${lexendFont.variable} cursor-none`}>
@@ -65,17 +67,18 @@ export default function RootLayout({
             crossOrigin="anonymous" 
             referrerPolicy="no-referrer" 
           />
+          <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
         </head>
         <body className="antialiased overflow-x-hidden">
-          <animated.div
-            className={`h-6 md:h-8 w-6 md:w-8 bg-yellow-300 mix-blend-difference opacity-90 fixed z-[99999] pointer-events-none`}
-            style={{ 
-              x: springProps.x, 
-              y: springProps.y, 
-              scale: springProps.scale, 
-              borderRadius: springProps.rounded.to((r: number) => `${r}%`) 
-            }}
-          />
+        <AnimatedDiv
+          style={{
+            x: springProps.x,
+            y: springProps.y,
+            scale: springProps.scale,
+            borderRadius: springProps.rounded.to((r) => `${r}%`),
+          }}
+          className="h-6 md:h-8 w-6 md:w-8 bg-yellow-300 mix-blend-difference opacity-90 fixed z-[99999] pointer-events-none"
+        />
 
           {/* Line animations */}
           <Div initial={{ x: 300 }} animate={{ x: -300 }} transition={{ duration: 1, delay: 1 }} className="scale-75 md:scale-100 w-82 h-8 -rotate-45 -translate-x-20 translate-y-14 fixed bg-yellow-300 mdshow"></Div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { FaTrophy, FaStar, FaMedal } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -21,7 +21,6 @@ const AchievementCard: React.FC<Achievement> = ({
     type,
     organization
 }) => {
-    const [isHovered, setIsHovered] = useState(false);
 
     const getIconByType = () => {
         switch(type) {
@@ -50,12 +49,10 @@ const AchievementCard: React.FC<Achievement> = ({
                 damping: 10
             }}
             className="group bg-neutral-900 rounded-2xl overflow-hidden shadow-lg border border-neutral-800 hover:border-yellow-300 transition-all duration-300 w-[400px] h-[480px] scale-75 md:scale-100"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
         >
             <div className="relative h-[250px] w-full overflow-hidden">
                 <motion.div 
-                    className="w-full h-full"
+                    className="w-full h-full relative"
                     initial={{ scale: 1 }}
                     whileHover={{ scale: 1.1, transition: { duration: 0.5, ease: "easeInOut" } }}
                 >

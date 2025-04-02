@@ -9,28 +9,34 @@ import {
   FaInstagram,
   FaEnvelope,
   FaPaperPlane,
-  FaYoutube,
 } from "react-icons/fa";
 import { useCursor } from "../layout";
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState<{ name: string; email: string; message: string }>({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name as keyof typeof formData]: value,
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
 
     try {
-      const response = await fetch('/api/send-email', {
+      await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,11 +44,15 @@ const ContactPage = () => {
         body: JSON.stringify(formData),
       });
 
-
       setSubmitted(true);
-    } catch (err) {
-      setError(err.message);
-      console.error('Email submission error:', err);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+        console.error('Email submission error:', err);
+      } else {
+        setError('An unknown error occurred.');
+        console.error('Unknown error:', err);
+      }
     } finally {
       setSubmitting(false);
     }
@@ -80,7 +90,7 @@ const ContactPage = () => {
                     type={type}
                     id={id}
                     name={id}
-                    value={formData[id]}
+                    value={formData[id as keyof typeof formData]}
                     onChange={handleChange}
                     required
                     className="w-full bg-neutral-800 text-white p-3 rounded-lg border border-neutral-700 focus:border-yellow-300 transition-colors"
@@ -118,7 +128,7 @@ const ContactPage = () => {
                 whileTap={{ scale: 0.95 }}
                 className="w-full bg-yellow-300 text-black font-bold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center disabled:opacity-50"
               >
-                {submitting ? 'Sending...' : (<><FaPaperPlane className="mr-2" /> Send Message</>)}
+                {submitting ? 'Sending....' : (<><FaPaperPlane className="mr-2" /> Send Message</>)}
               </motion.button>
             </form>
           ) : (

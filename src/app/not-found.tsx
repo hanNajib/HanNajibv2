@@ -8,26 +8,26 @@ function NotFound() {
   const { api } = useCursor();
   const [randomMessage, setRandomMessage] = useState("");
 
-  const pesanApaIniCoeg = [
-    "Nani?! Halaman ini tidak ada?! Apakah ini genjutsu dari Itachi?!",
-    "404 – Halaman ini menghilang... Mungkin masuk ke Dark Continent?!",
-    "Nande?! Halaman ini lenyap! Ataukah ini ulah Dio?! ZA WARUDO!!",
-    "Error 404 – Halaman ini tidak ada. Jangan khawatir, kita bisa cari di Grand Line!",
-    "Halaman ini seperti angin—terasa ada, tapi tak pernah bisa kugenggam.",
-    "404 – Seperti bintang di langit, hanya bisa kupandangi dari jauh.",
-    "404 – Divergensi dunia ini tidak memungkinkan halaman ini untuk ditemukan.",
-    "Halaman ini hilang… Atau mungkin hanya ada di worldline lain.",
-    "404 – Halaman ini tidak ditemukan... Mungkin sudah menjadi bagian dari 'kutukan'.",
-    "Kau mencarinya? Hati-hati… beberapa hal lebih baik dibiarkan tidak ditemukan.",
-    "Halaman ini tidak ada... Atau mungkin dia sudah 'dihapus' dari realitas.",
-    "Realitas terus bergerak, dunia terus berputar… tapi halaman ini tetap tidak ditemukan.",
-    "404 – Apakah ini konsekuensi dari memilih jalan yang salah? Jika saja aku bisa kembali ke awal dan memilih berbeda...",
-    "E=mc², tekanan atmosfer, hukum termodinamika… Semua bisa dijelaskan dengan sains! Tapi halaman ini? 10 miliar persen tetap tidak ditemukan!",
-    "404 – Seperti kasus yang belum terpecahkan, halaman ini masih menjadi misteri.",
-    "cape le mikirin pesan error 404"
-  ];
-
   useEffect(() => {
+    const pesanApaIniCoeg = [
+      "Nani?! Halaman ini tidak ada?! Apakah ini genjutsu dari Itachi?!",
+      "404 – Halaman ini menghilang... Mungkin masuk ke Dark Continent?!",
+      "Nande?! Halaman ini lenyap! Ataukah ini ulah Dio?! ZA WARUDO!!",
+      "Error 404 – Halaman ini tidak ada. Jangan khawatir, kita bisa cari di Grand Line!",
+      "Halaman ini seperti angin—terasa ada, tapi tak pernah bisa kugenggam.",
+      "404 – Seperti bintang di langit, hanya bisa kupandangi dari jauh.",
+      "404 – Divergensi dunia ini tidak memungkinkan halaman ini untuk ditemukan.",
+      "Halaman ini hilang… Atau mungkin hanya ada di worldline lain.",
+      "404 – Halaman ini tidak ditemukan... Mungkin sudah menjadi bagian dari 'kutukan'.",
+      "Kau mencarinya? Hati-hati… beberapa hal lebih baik dibiarkan tidak ditemukan.",
+      "Halaman ini tidak ada... Atau mungkin dia sudah 'dihapus' dari realitas.",
+      "Realitas terus bergerak, dunia terus berputar… tapi halaman ini tetap tidak ditemukan.",
+      "404 – Apakah ini konsekuensi dari memilih jalan yang salah? Jika saja aku bisa kembali ke awal dan memilih berbeda...",
+      "E=mc², tekanan atmosfer, hukum termodinamika… Semua bisa dijelaskan dengan sains! Tapi halaman ini? 10 miliar persen tetap tidak ditemukan!",
+      "404 – Seperti kasus yang belum terpecahkan, halaman ini masih menjadi misteri.",
+      "cape le mikirin pesan error 404"
+    ];
+
     const randomIndex = Math.floor(Math.random() * pesanApaIniCoeg.length);
     setRandomMessage(pesanApaIniCoeg[randomIndex]);
   }, []);
