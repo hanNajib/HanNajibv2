@@ -1,6 +1,6 @@
 import TechCard from "@/components/TechCard";
 import React from "react";
-import { SiNextdotjs, SiExpress, SiTailwindcss, SiPhp, SiTypescript, SiPrisma } from "react-icons/si";
+import { SiNextdotjs, SiExpress, SiTailwindcss, SiPhp, SiTypescript, SiPrisma, SiNestjs } from "react-icons/si";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -25,6 +25,7 @@ const techStack = {
   NodeJs: <FaNodeJs />,
   React: <FaReact />,
   "Next.js": <SiNextdotjs />,
+  NestJs: <SiNestjs />,
   Express: <SiExpress />,
   Prisma: <SiPrisma />,
   Java: <FaJava />,

@@ -43,6 +43,14 @@ const projectsData: Project[] = [
     imageUrl: "/flipiwak.png", 
     liveLink: "http://flip-iwak.vercel.app/" 
   },
+  { 
+    title: "KataSubu", 
+    description: "Katasubu adalah website untuk menerjemahkan file subtitle (.srt) ke berbagai bahasa dengan mudah", 
+    technologies: ["Next.js", "NestJs"], 
+    imageUrl: "/katasubu.png", 
+    githubLink: "https://github.com/hanNajib/KataSubu", 
+    liveLink: "https://katasubu.vercel.app/" 
+  },
 ];
 
 const ProjectsPage = () => {
