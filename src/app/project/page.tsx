@@ -36,13 +36,13 @@ const projectsData: Project[] = [
     githubLink: "https://github.com/hanNajib/RefactoMate", 
     liveLink: "https://refactomate.vercel.app/" 
   },
-  { 
-    title: "FlipIwak", 
-    description: "Memory Card Game dengan Style dari game Blue Archive dengan Leaderboard", 
-    technologies: ["HTML", "CSS", "JavaScript", "Node Js", "Prisma", "Express"], 
-    imageUrl: "/flipiwak.png", 
-    liveLink: "http://flip-iwak.vercel.app/" 
-  },
+  // { 
+  //   title: "FlipIwak", 
+  //   description: "Memory Card Game dengan Style dari game Blue Archive dengan Leaderboard", 
+  //   technologies: ["HTML", "CSS", "JavaScript", "Node Js", "Prisma", "Express"], 
+  //   imageUrl: "/flipiwak.png", 
+  //   liveLink: "http://flip-iwak.vercel.app/" 
+  // },
   { 
     title: "KataSubu", 
     description: "Katasubu adalah website untuk menerjemahkan file subtitle (.srt) ke berbagai bahasa dengan mudah", 
@@ -95,7 +95,7 @@ const ProjectsPage = () => {
       window.removeEventListener('resize', updateWidth);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [windowWidth]);
+  }, [windowWidth]);  
   
   return (
     <div className="relative w-full min-h-screen">
