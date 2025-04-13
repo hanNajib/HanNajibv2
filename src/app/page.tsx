@@ -5,6 +5,7 @@ import { useCursor } from "./layout";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import DiscordActivity from "@/components/DiscordActivity";
 
 export default function Home() {
   const { api } = useCursor();
@@ -59,6 +60,8 @@ export default function Home() {
   };
 
   return (
+    <>
+    <DiscordActivity />
     <div className="overflow-hidden cursor-none">
       <div className="w-screen md:h-screen mt-32 md:mt-0 flex justify-center items-center relative">
         <section className="scale-90 hover:scale-100 transition-all duration-700 ease-out">
@@ -186,5 +189,6 @@ export default function Home() {
         </section>
       </div>
     </div>
+    </>
   );
 }

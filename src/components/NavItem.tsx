@@ -16,7 +16,7 @@ const NavItem = ({ icon, link, delay, onMouseEnter, onMouseLeave }: Props) => {
       initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-      transition={{ duration: 0.8, delay: delay, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.6, delay, ease: "easeOut" }}
     >
       <Link
         href={link}
@@ -24,16 +24,15 @@ const NavItem = ({ icon, link, delay, onMouseEnter, onMouseLeave }: Props) => {
         onMouseLeave={onMouseLeave}
       >
         <motion.div
-          className="cursor-none z-50 w-10 h-10 flex items-center justify-center rounded-md bg-yellow-300 text-gray-800 md:bg-gray-800 md:text-white  shadow-lg"
+          className="cursor-none z-50 w-10 h-10 flex items-center justify-center rounded-md bg-yellow-300 text-gray-800 md:bg-gray-800 md:text-white shadow-md"
           whileHover={{
-            scale: 1.2,
-            rotate: 10,
-            boxShadow: "0px 0px 20px rgba(255, 255, 0, 0.5)"
+            scale: 1.1,
+            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)"
           }}
-          whileTap={{ scale: 0.9, rotate: -10 }}
-          transition={{ type: "spring", stiffness: 300, damping: 10 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
         >
-          <i className={`${icon}`}></i>
+          <i className={icon}></i>
         </motion.div>
       </Link>
     </motion.div>
