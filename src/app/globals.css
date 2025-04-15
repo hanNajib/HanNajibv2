@@ -71,6 +71,7 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: #333333 #1c1c1c;
+  cursor: none !important;
 }
 
 a, input, textarea, label {
