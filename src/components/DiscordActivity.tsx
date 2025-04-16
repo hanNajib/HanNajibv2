@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
+"use client";
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import NavItem from './NavItem';
+import { useCursor } from '@/app/layout';
 
 interface DiscordStatusResponse {
   data: {
@@ -60,6 +62,8 @@ const DiscordActivity: React.FC = () => {
   const [currentActivityIndex, setCurrentActivityIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [spotifyProgress, setSpotifyProgress] = useState(0);
+
+  const { api } = useCursor();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -199,6 +203,7 @@ const DiscordActivity: React.FC = () => {
   // Get current activity based on index
   const currentActivity = totalActivities > 0 ? allActivities[currentActivityIndex] : null;
 
+
   // Display text for the main label
   const getDisplayText = () => {
     if (!currentActivity) {
@@ -224,9 +229,9 @@ const DiscordActivity: React.FC = () => {
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center space-x-3">
-          <NavItem delay={1} icon='fa-brands fa-discord' link='/' />
+          <NavItem delay={1} icon='fa-brands fa-discord' link='/' onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
           <div className={`h-3 w-3 rounded-full ring-2 ring-gray-800 ${getStatusColor(currentStatus)}`} />
-          <span className="max-w-[200px] truncate text-sm">
+          <span className="max-w-[200px] truncate text-sm" onMouseEnter={() => api.start({ rounded: 0, scale: 0.8 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}>
             {getDisplayText()}
           </span>
         </div>
@@ -254,8 +259,8 @@ const DiscordActivity: React.FC = () => {
                 <div className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-zinc-800 ${getStatusColor(currentStatus)}`} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">{discord_user.username}</h3>
-                <p className="flex items-center text-sm text-zinc-400">
+                <h3 className="text-lg font-bold text-white" onMouseEnter={() => api.start({ rounded: 0, scale: 0.9 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}>{discord_user.username}</h3>
+                <p className="flex items-center text-sm text-zinc-400" onMouseEnter={() => api.start({ rounded: 0, scale: 0.5 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}>
                   <span className={`mr-1 h-2 w-2 rounded-full ${getStatusColor(currentStatus)}`} />
                   {currentStatus}
                 </p>
@@ -268,7 +273,7 @@ const DiscordActivity: React.FC = () => {
                 className="ml-auto text-zinc-400 hover:text-white"
                 aria-label="Close panel"
               >
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -345,7 +350,7 @@ const DiscordActivity: React.FC = () => {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {/* For Spotify activity */}
+                  
                   {currentActivity?.type === 'spotify' ? (
                     <div>
                       {/* Top section with album art and basic info */}
