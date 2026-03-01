@@ -57,29 +57,29 @@ export default function RootLayout({
     <CursorContext.Provider value={{ api }}>
       <html lang="en" className={`${lexendFont.variable} cursor-none`}>
         <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="google-site-verification" content="pQlYJZ9xPhGBaJ5097NplwPXSpuH087f0FUbu7D606I" />
+          <meta charSet="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name="google-site-verification" content="pQlYJZ9xPhGBaJ5097NplwPXSpuH087f0FUbu7D606I" />
           <title>HanNajib</title>
-          <link 
-            rel="stylesheet" 
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
-            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
-            crossOrigin="anonymous" 
-            referrerPolicy="no-referrer" 
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossOrigin="anonymous"
+            referrerPolicy="no-referrer"
           />
           <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
         </head>
         <body className="antialiased overflow-x-hidden">
-        <AnimatedDiv
-          style={{
-            x: springProps.x,
-            y: springProps.y,
-            scale: springProps.scale,
-            borderRadius: springProps.rounded.to((r) => `${r}%`),
-          }}
-          className="h-6 md:h-8 w-6 md:w-8 bg-yellow-300 mix-blend-difference opacity-90 fixed z-[99999] pointer-events-none"
-        />
+          <AnimatedDiv
+            style={{
+              x: springProps.x,
+              y: springProps.y,
+              scale: springProps.scale,
+              borderRadius: springProps.rounded.to((r) => `${r}%`),
+            }}
+            className="h-6 md:h-8 w-6 md:w-8 bg-yellow-300 mix-blend-difference opacity-90 fixed z-[99999] pointer-events-none"
+          />
 
           {/* Line animations */}
           <Div initial={{ x: 300 }} animate={{ x: -300 }} transition={{ duration: 1, delay: 1 }} className="scale-75 md:scale-100 w-82 h-8 -rotate-45 -translate-x-20 translate-y-14 fixed bg-yellow-300 mdshow"></Div>
@@ -89,37 +89,37 @@ export default function RootLayout({
           <Div initial={{ x: -300 }} animate={{ x: 600 }} transition={{ duration: 1.5, delay: 3.2 }} className="scale-75 md:scale-100 w-82 h-8 -rotate-45 bottom-10 right-0 fixed bg-yellow-300 mdshow"></Div>
           <Div initial={{ x: -300 }} animate={{ x: 300 }} transition={{ duration: 1, delay: 3.2 }} className="scale-75 md:scale-100 w-52 h-8 -rotate-45 bottom-12 right-0 fixed bg-yellow-300 mdshow"></Div>
           <Div initial={{ x: 400 }} animate={{ x: 0 }} transition={{ duration: 1, delay: 4.2 }} className="scale-75 md:scale-100 w-80 h-8 right-0 top-5 fixed bg-yellow-300 mdshow"></Div>
-          
+
           {/* Navigation */}
-          <Div 
-            initial={{ x: 350 }} 
-            animate={{ x: 0 }} 
-            transition={{ duration: 1, delay: 5 }} 
+          <Div
+            initial={{ x: 350 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 1, delay: 5 }}
             className="w-80 scale-75 md:scale-100 h-16 right-0 top-5 p-5 fixed gap-4 bg-yellow-300 flex items-center justify-between z-50 cursor-none mdshow"
           >
-            <NavItem delay={6} icon="fa-solid fa-home" link="/" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-            <NavItem delay={6.6} icon="fa-solid fa-code" link="/tech" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-            <NavItem delay={6.8} icon="fa-solid fa-folder-open" link="/project" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-            <NavItem delay={7} icon="fa-solid fa-trophy" link="/achievement" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-            <NavItem delay={7.2} icon="fa-solid fa-envelope" link="/contact" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
+            <NavItem delay={6} icon="fa-solid fa-home" link="/" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+            <NavItem delay={6.6} icon="fa-solid fa-code" link="/tech" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+            <NavItem delay={6.8} icon="fa-solid fa-folder-open" link="/project" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+            <NavItem delay={7} icon="fa-solid fa-trophy" link="/achievement" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+            <NavItem delay={7.2} icon="fa-solid fa-envelope" link="/contact" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
           </Div>
 
           {/* Mobile Navigation */}
           <div className="w-screen flex justify-center items-center hide-on-desktop">
-          <Div 
-            initial={{ y: 600, filter: "blur(10px)", opacity: 0 }} 
-            animate={{ y: 0, filter: "blur(0px)", opacity: 1}} 
-            transition={{ duration: 1, delay: 1 }} 
-            className="w-full h-16 bottom-0 p-5 rounded-t-2xl fixed gap-4 bg-zinc-900 flex items-center justify-between z-50 cursor-none"
-          >
-            <NavItem delay={2} icon="fa-solid fa-home" link="/" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-            <NavItem delay={2.6} icon="fa-solid fa-code" link="/tech" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-            <NavItem delay={2.8} icon="fa-solid fa-folder-open" link="/project" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-            <NavItem delay={3} icon="fa-solid fa-trophy" link="/achievement" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-            <NavItem delay={3.2} icon="fa-solid fa-envelope" link="/contact" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })}/>
-          </Div>
+            <Div
+              initial={{ y: 600, filter: "blur(10px)", opacity: 0 }}
+              animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="w-full h-16 bottom-0 p-5 rounded-t-2xl fixed gap-4 bg-zinc-900 flex items-center justify-between z-50 cursor-none"
+            >
+              <NavItem delay={2} icon="fa-solid fa-home" link="/" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+              <NavItem delay={2.6} icon="fa-solid fa-code" link="/tech" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+              <NavItem delay={2.8} icon="fa-solid fa-folder-open" link="/project" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+              <NavItem delay={3} icon="fa-solid fa-trophy" link="/achievement" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+              <NavItem delay={3.2} icon="fa-solid fa-envelope" link="/contact" onMouseEnter={() => api.start({ rounded: 0, scale: 0.3 })} onMouseLeave={() => api.start({ scale: 1, rounded: 50 })} />
+            </Div>
           </div>
-          
+
           {children}
           <Background />
         </body>
